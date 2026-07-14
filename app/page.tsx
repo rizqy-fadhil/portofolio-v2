@@ -6,6 +6,7 @@ import { SelectedWorks } from "@/app/components/SelectedWorks";
 import { Experience } from "@/app/components/Experience";
 import { Marquee } from "@/app/components/Marquee";
 import { TechSkills } from "@/app/components/TechSkills";
+import { AboutMe } from "@/app/components/AboutMe";
 
 /* ── Stagger-in animation variants ── */
 const containerVariants = {
@@ -178,18 +179,11 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-nb-border" />
       </section>
 
-      {/* ═══════════ PLACEHOLDER SECTIONS ═══════════ */}
-      <section id="about" className="border-b-3 border-nb-border bg-nb-white py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            About<span className="text-nb-accent">.</span>
-          </h2>
-        </div>
-      </section>
-
       <SelectedWorks />
 
       <Marquee />
+
+      <AboutMe />
 
       <TechSkills />
 

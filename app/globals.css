@@ -208,3 +208,17 @@ body {
   background-color: var(--nb-fg);
   border: 2px solid var(--nb-bg);
 }
+
+/* ── 6. Marquee Animation ── */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 30s linear infinite;
+}

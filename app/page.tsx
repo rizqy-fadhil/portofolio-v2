@@ -1,65 +1,206 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { SelectedWorks } from "@/app/components/SelectedWorks";
+
+/* ── Stagger-in animation variants ── */
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
+
+/* ── Floating decorative shapes ── */
+function FloatingShapes() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* Yellow square */}
+      <motion.div
+        className="absolute -top-6 right-[10%] h-24 w-24 border-3 border-nb-border bg-nb-yellow"
+        animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Pink circle */}
+      <motion.div
+        className="absolute top-[30%] -left-8 h-20 w-20 rounded-full border-3 border-nb-border bg-nb-pink"
+        animate={{ y: [0, 18, 0], rotate: [0, -8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      />
+      {/* Blue rectangle */}
+      <motion.div
+        className="absolute bottom-[20%] right-[5%] h-16 w-32 border-3 border-nb-border bg-nb-blue"
+        animate={{ y: [0, -10, 0], rotate: [0, 4, 0] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      {/* Green small square */}
+      <motion.div
+        className="absolute bottom-[10%] left-[15%] h-14 w-14 border-3 border-nb-border bg-nb-green"
+        animate={{ y: [0, 12, 0], rotate: [0, -12, 0] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+      />
+      {/* Purple circle — subtle */}
+      <motion.div
+        className="absolute top-[15%] right-[35%] h-10 w-10 rounded-full border-3 border-nb-border bg-nb-purple opacity-70"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      {/* ═══════════ HERO SECTION ═══════════ */}
+      <section
+        id="hero"
+        className="relative flex min-h-[calc(100vh-73px)] items-center overflow-hidden bg-nb-bg"
+      >
+        <FloatingShapes />
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-20 lg:px-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-start gap-8"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            {/* Eyebrow badge */}
+            <motion.div variants={itemVariants}>
+              <span className="nb-badge bg-nb-yellow">
+                👋 Available for work
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="font-display text-5xl font-bold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              Creative
+              <br />
+              Developer &{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10">Designer</span>
+                <motion.span
+                  className="absolute bottom-1 left-0 -z-0 h-4 w-full bg-nb-yellow sm:bottom-2 sm:h-5 md:h-6"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+                  style={{ transformOrigin: "left" }}
+                />
+              </span>
+            </motion.h1>
+
+            {/* Subheading */}
+            <motion.p
+              variants={itemVariants}
+              className="max-w-xl text-lg leading-relaxed text-nb-fg/70 sm:text-xl"
+            >
+              I build bold, functional digital experiences with clean code and
+              striking design. Let&apos;s turn your ideas into something
+              unforgettable.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <Link href="#projects" className="nb-btn text-base">
+                View Projects
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                  />
+                </svg>
+              </Link>
+              <Link
+                href="#contact"
+                className="nb-btn nb-btn-secondary text-base"
+              >
+                Get in Touch
+              </Link>
+            </motion.div>
+
+            {/* Stats row */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-4 flex flex-wrap gap-6"
+            >
+              {[
+                { value: "3+", label: "Years Experience" },
+                { value: "20+", label: "Projects Shipped" },
+                { value: "∞", label: "Coffee Cups" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="nb-card px-5 py-3 text-center"
+                >
+                  <p className="font-display text-2xl font-bold">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-nb-fg/60">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
-      </main>
-    </div>
+
+        {/* Bottom border accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-nb-border" />
+      </section>
+
+      {/* ═══════════ PLACEHOLDER SECTIONS ═══════════ */}
+      <section id="about" className="border-b-3 border-nb-border bg-nb-white py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+            About<span className="text-nb-accent">.</span>
+          </h2>
+        </div>
+      </section>
+
+      <SelectedWorks />
+
+      <section id="skills" className="border-b-3 border-nb-border bg-nb-white py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+            Skills<span className="text-nb-accent">.</span>
+          </h2>
+        </div>
+      </section>
+
+      <section id="contact" className="bg-nb-bg py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+            Contact<span className="text-nb-accent">.</span>
+          </h2>
+        </div>
+      </section>
+    </>
   );
 }

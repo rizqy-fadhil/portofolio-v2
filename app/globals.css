@@ -1,26 +1,210 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   Neo-Brutalism Design System — Tailwind v4
+   ───────────────────────────────────────────── */
+
+/* ── 1. Design Tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --nb-bg: #f5f0e8;           /* warm beige background */
+  --nb-bg-alt: #faf7f2;       /* slightly lighter beige */
+  --nb-fg: #1a1a1a;           /* near-black text */
+  --nb-border: #1a1a1a;       /* thick border color */
+  --nb-accent: #ff6b35;       /* vibrant orange accent */
+  --nb-accent-hover: #e85d2c; /* darker accent for hover */
+  --nb-yellow: #ffe156;       /* bright yellow */
+  --nb-pink: #ff87ab;         /* playful pink */
+  --nb-blue: #7ec8e3;         /* sky blue */
+  --nb-green: #9de37e;        /* lime green */
+  --nb-purple: #c4a0f5;       /* lavender purple */
+  --nb-white: #ffffff;
+
+  /* Shadow offsets */
+  --nb-shadow-sm: 2px 2px 0px 0px var(--nb-border);
+  --nb-shadow: 4px 4px 0px 0px var(--nb-border);
+  --nb-shadow-md: 6px 6px 0px 0px var(--nb-border);
+  --nb-shadow-lg: 8px 8px 0px 0px var(--nb-border);
+  --nb-shadow-none: 0px 0px 0px 0px var(--nb-border);
+
+  /* Borders */
+  --nb-border-width: 3px;
+  --nb-border-style: var(--nb-border-width) solid var(--nb-border);
 }
 
+/* ── 2. Register tokens with Tailwind v4 @theme ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-nb-bg: var(--nb-bg);
+  --color-nb-bg-alt: var(--nb-bg-alt);
+  --color-nb-fg: var(--nb-fg);
+  --color-nb-border: var(--nb-border);
+  --color-nb-accent: var(--nb-accent);
+  --color-nb-accent-hover: var(--nb-accent-hover);
+  --color-nb-yellow: var(--nb-yellow);
+  --color-nb-pink: var(--nb-pink);
+  --color-nb-blue: var(--nb-blue);
+  --color-nb-green: var(--nb-green);
+  --color-nb-purple: var(--nb-purple);
+  --color-nb-white: var(--nb-white);
+
+  --shadow-nb-sm: var(--nb-shadow-sm);
+  --shadow-nb: var(--nb-shadow);
+  --shadow-nb-md: var(--nb-shadow-md);
+  --shadow-nb-lg: var(--nb-shadow-lg);
+  --shadow-nb-none: var(--nb-shadow-none);
+
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── 3. Global Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--nb-bg);
+  color: var(--nb-fg);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--nb-yellow);
+  color: var(--nb-fg);
+}
+
+/* ── 4. Neo-Brutalism Component Classes ── */
+
+/* Card — thick border + hard offset shadow */
+.nb-card {
+  background-color: var(--nb-white);
+  border: var(--nb-border-style);
+  box-shadow: var(--nb-shadow);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.nb-card:hover {
+  box-shadow: var(--nb-shadow-md);
+  transform: translate(-2px, -2px);
+}
+
+/* Button — the classic press-down effect */
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--nb-accent);
+  color: var(--nb-white);
+  border: var(--nb-border-style);
+  box-shadow: var(--nb-shadow);
+  transition: box-shadow 0.1s ease, transform 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.nb-btn:hover {
+  background-color: var(--nb-accent-hover);
+  box-shadow: var(--nb-shadow-sm);
+  transform: translate(2px, 2px);
+}
+
+.nb-btn:active {
+  box-shadow: var(--nb-shadow-none);
+  transform: translate(4px, 4px);
+}
+
+/* Button variants */
+.nb-btn-secondary {
+  background-color: var(--nb-white);
+  color: var(--nb-fg);
+}
+
+.nb-btn-secondary:hover {
+  background-color: var(--nb-bg);
+}
+
+.nb-btn-yellow {
+  background-color: var(--nb-yellow);
+  color: var(--nb-fg);
+}
+
+.nb-btn-pink {
+  background-color: var(--nb-pink);
+  color: var(--nb-fg);
+}
+
+.nb-btn-blue {
+  background-color: var(--nb-blue);
+  color: var(--nb-fg);
+}
+
+/* Badge / Tag */
+.nb-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--nb-border);
+  box-shadow: var(--nb-shadow-sm);
+}
+
+/* Input */
+.nb-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: var(--nb-white);
+  border: var(--nb-border-style);
+  box-shadow: var(--nb-shadow-sm);
+  outline: none;
+  transition: box-shadow 0.15s ease;
+}
+
+.nb-input:focus {
+  box-shadow: var(--nb-shadow);
+}
+
+/* Container with border */
+.nb-container {
+  border: var(--nb-border-style);
+  background-color: var(--nb-white);
+}
+
+/* Divider */
+.nb-divider {
+  border: none;
+  border-top: var(--nb-border-style);
+}
+
+/* ── 5. Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nb-bg);
+  border-left: var(--nb-border-style);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--nb-fg);
+  border: 2px solid var(--nb-bg);
 }

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { SelectedWorks } from "@/app/components/SelectedWorks";
+import { Experience } from "@/app/components/Experience";
 
 /* ── Stagger-in animation variants ── */
 const containerVariants = {
@@ -193,6 +194,8 @@ export default function Home() {
           </h2>
         </div>
       </section>
+
+      <Experience />
 
       <section id="contact" className="bg-nb-bg py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

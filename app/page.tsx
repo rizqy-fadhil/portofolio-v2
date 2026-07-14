@@ -7,6 +7,7 @@ import { Experience } from "@/app/components/Experience";
 import { Marquee } from "@/app/components/Marquee";
 import { TechSkills } from "@/app/components/TechSkills";
 import { AboutMe } from "@/app/components/AboutMe";
+import { ContactFooter } from "@/app/components/ContactFooter";
 
 /* ── Stagger-in animation variants ── */
 const containerVariants = {
@@ -189,13 +190,7 @@ export default function Home() {
 
       <Experience />
 
-      <section id="contact" className="bg-nb-bg py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="font-display text-4xl font-bold sm:text-5xl">
-            Contact<span className="text-nb-accent">.</span>
-          </h2>
-        </div>
-      </section>
+      <ContactFooter />
     </>
   );
 }

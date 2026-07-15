@@ -32,11 +32,6 @@ const SKILLS = [
   "Figma",
 ];
 
-/* Fixed rotation angles for the "sticker" look (-3 to 3 deg) */
-const ROTATIONS = [
-  -2, 1.5, -1, 2.5, -3, 1, -2.5, 3, -1.5, 2, -0.5, 1.8, -2.8, 0.8, -1.2, 2.2,
-];
-
 /* ── Animation variants ── */
 const sectionVariants = {
   hidden: {},
@@ -85,27 +80,29 @@ export function TechSkills() {
           <span className="nb-badge mb-5 inline-block bg-nb-green">
             My Arsenal
           </span>
-          <h2 className="font-display text-5xl font-bold leading-tight tracking-tight sm:text-6xl md:text-7xl">
-            Tech Skills
-            <span className="text-nb-accent">.</span>
+          <h2 className="font-display text-5xl font-bold uppercase leading-tight tracking-tight sm:text-6xl md:text-7xl">
+            <span className="text-nb-fg">TECH</span>{" "}
+            <span className="text-transparent [-webkit-text-stroke:2px_var(--nb-border)] sm:[-webkit-text-stroke:3px_var(--nb-border)]">
+              SKILLS
+            </span>
           </h2>
         </motion.div>
 
         {/* Skill pills */}
-        <div className="flex flex-wrap gap-4 sm:gap-5">
+        <div className="flex flex-wrap justify-center gap-6 gap-y-8 sm:gap-8 sm:gap-y-12 mt-14">
           {SKILLS.map((skill, i) => (
             <motion.span
               key={skill}
               variants={pillVariants}
-              className="nb-badge cursor-default px-4 py-2 text-sm font-bold sm:px-5 sm:py-2.5 sm:text-base"
+              className="nb-badge cursor-default px-10 py-5 text-2xl font-bold sm:px-14 sm:py-7 sm:text-4xl border-[4px]"
               style={{
                 backgroundColor: ACCENT_COLORS[i % ACCENT_COLORS.length],
-                transform: `rotate(${ROTATIONS[i]}deg)`,
+                rotate: i % 2 === 0 ? -2 : 2,
               }}
               whileHover={{
-                scale: 1.12,
+                y: -2,
                 rotate: 0,
-                transition: { duration: 0.2 },
+                transition: { duration: 0.2, ease: "easeOut" },
               }}
             >
               {skill}

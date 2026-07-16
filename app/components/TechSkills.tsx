@@ -89,25 +89,35 @@ export function TechSkills() {
         </motion.div>
 
         {/* Skill pills */}
-        <div className="flex flex-wrap justify-center gap-6 gap-y-8 sm:gap-8 sm:gap-y-12 mt-14">
-          {SKILLS.map((skill, i) => (
-            <motion.span
-              key={skill}
-              variants={pillVariants}
-              className="nb-badge cursor-default px-10 py-5 text-2xl font-bold sm:px-14 sm:py-7 sm:text-4xl border-[4px]"
-              style={{
-                backgroundColor: ACCENT_COLORS[i % ACCENT_COLORS.length],
-                rotate: i % 2 === 0 ? -2 : 2,
-              }}
-              whileHover={{
-                y: -2,
-                rotate: 0,
-                transition: { duration: 0.2, ease: "easeOut" },
-              }}
-            >
-              {skill}
-            </motion.span>
-          ))}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl mx-auto mt-14">
+          {SKILLS.map((skill, i) => {
+            const rotations = ['-rotate-2', 'rotate-3', '-rotate-3', 'rotate-1', '-rotate-1', 'rotate-2'];
+            const rotationClass = rotations[i % rotations.length];
+            
+            // Generate a deterministic pseudo-random index based on the string to avoid hydration mismatches
+            const charSum = skill.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+            const randomColorIndex = (charSum + (i * 7)) % ACCENT_COLORS.length;
+
+            return (
+              <motion.div
+                key={skill}
+                variants={pillVariants}
+                whileHover={{
+                  y: -2,
+                  transition: { duration: 0.2, ease: "easeOut" },
+                }}
+              >
+                <div
+                  className={`cursor-default px-5 py-2 sm:px-6 sm:py-3 text-base sm:text-lg font-bold uppercase tracking-wide rounded-2xl border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] transition-transform hover:rotate-0 inline-block ${rotationClass}`}
+                  style={{
+                    backgroundColor: ACCENT_COLORS[randomColorIndex],
+                  }}
+                >
+                  {skill}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
     </section>

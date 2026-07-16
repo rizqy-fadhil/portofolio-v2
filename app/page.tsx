@@ -73,16 +73,7 @@ function FloatingShapes() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
         </svg>
       </motion.div>
-      {/* Lightning bolt badge */}
-      <motion.div
-        className="absolute bottom-[35%] left-[8%] flex h-12 w-12 items-center justify-center rounded-xl border-3 border-nb-border bg-nb-yellow shadow-nb-sm sm:h-14 sm:w-14"
-        animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }}
-        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-      >
-        <svg className="h-6 w-6 text-nb-fg sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-        </svg>
-      </motion.div>
+
     </div>
   );
 }
@@ -138,15 +129,28 @@ export default function Home() {
               </span>
             </motion.h1>
 
-            {/* Subheading */}
-            <motion.p
-              variants={itemVariants}
-              className="max-w-xl pl-20 sm:pl-28 md:pl-32 lg:pl-40 text-lg leading-relaxed text-nb-fg/70 sm:text-xl"
-            >
-              I build bold, functional digital experiences with clean code and
-              striking design. Let&apos;s turn your ideas into something
-              unforgettable.
-            </motion.p>
+            {/* Subheading with floating icon */}
+            <motion.div variants={itemVariants} className="relative mt-4">
+              {/* Floating Lightning bolt badge */}
+              <motion.div
+                className="absolute -top-8 -left-4 md:-top-10 md:-left-12 flex h-12 w-12 items-center justify-center rounded-xl border-3 border-nb-border bg-nb-yellow shadow-nb-sm sm:h-14 sm:w-14 z-20"
+                animate={{ y: [0, -10, 0], rotate: [0, -10, 0] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
+                <svg className="h-6 w-6 text-nb-fg sm:h-7 sm:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                </svg>
+              </motion.div>
+
+              {/* Text Card */}
+              <div className="relative z-10 max-w-xl bg-nb-white border-3 border-nb-border p-5 sm:p-6 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <p className="text-lg leading-relaxed text-nb-fg/80 sm:text-xl font-medium">
+                  I build bold, functional digital experiences with clean code and
+                  striking design. Let&apos;s turn your ideas into something
+                  unforgettable.
+                </p>
+              </div>
+            </motion.div>
 
             {/* CTA Buttons */}
             <motion.div
@@ -245,13 +249,13 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-nb-border" />
       </section>
 
-      <SelectedWorks />
+      <AboutMe />
 
       <Marquee />
 
-      <AboutMe />
-
       <TechSkills />
+      
+      <SelectedWorks />
 
       <Experience />
 

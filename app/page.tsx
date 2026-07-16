@@ -141,7 +141,7 @@ export default function Home() {
             {/* Subheading */}
             <motion.p
               variants={itemVariants}
-              className="max-w-xl text-lg leading-relaxed text-nb-fg/70 sm:text-xl"
+              className="max-w-xl pl-20 sm:pl-28 md:pl-32 lg:pl-40 text-lg leading-relaxed text-nb-fg/70 sm:text-xl"
             >
               I build bold, functional digital experiences with clean code and
               striking design. Let&apos;s turn your ideas into something
